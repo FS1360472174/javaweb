@@ -1,6 +1,6 @@
 
+1. https://github.com/FS1360472174/javaweb/blob/master/java-web/src/util/ArrayListTest.java
+è§£å†³Gson gson å°†List<String> lz è½¬æ¢ä¸ºJsonçš„é—®é¢˜
 
-1. ½â¾öGson gson ½«List<String> lz ×ª»»ÎªJsonµÄÎÊÌâ
-
-http://bbs.csdn.net/topics/391991733
+é—®é¢˜:http://bbs.csdn.net/topics/391991733
 
