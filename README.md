@@ -4,3 +4,5 @@
 http://blog.takipi.com
 
 http://coolshell.cn/
+
+http://www.javaworld.com/
