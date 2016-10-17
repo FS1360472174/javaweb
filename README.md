@@ -13,6 +13,8 @@ https://sookocheff.com/post/
 
 http://www.baeldung.com/
 
+http://highscalability.com/blog/2016/9/28/how-uber-manages-a-million-writes-per-second-using-mesos-and.html
+
 ### 在线课程 ###
 
 MIT 课程 https://ocw.mit.edu/index.htm
