@@ -89,6 +89,9 @@ master 是本地的默认分支
 
 相当于上面两条命令，创建branch，切换branch
 
+删除本地branch
+**git branch -D clean_up**
+
 **git merge clean_up**
 
 在master分支下，将clean_up分支合并到master分支
