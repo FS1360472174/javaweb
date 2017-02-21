@@ -1,5 +1,8 @@
 # javaweb
 
+### plugin ###
+类图:http://www.objectaid.com/class-diagram
+
 ### 论坛及博客 ###
 http://blog.takipi.com
 
