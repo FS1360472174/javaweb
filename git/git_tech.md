@@ -90,7 +90,7 @@ master 是本地的默认分支
 相当于上面两条命令，创建branch，切换branch
 
 **git branch -D clean_up**
-删除本地branch
+删除本地branch(-D 是delete force缩写)
 
 **git checkout -b cleanup remote-stream/master
 根据远程分支创建新的分支
@@ -104,7 +104,8 @@ master 是本地的默认分支
 删除分支
 
 **git push origin --delete branch_name**
-
+或者
+**git push origin :<branch_name>**
 删除远程分支，远程删除掉了，本地并没有删除
 
 **git remote show origin**
