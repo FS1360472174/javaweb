@@ -25,6 +25,7 @@ public class TestExecutor {
 
 	public static void main(String[] args) {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
+		ExecutorService fixExecutor = Executors.newFixedThreadPool(10);
 		Callable<List<String>> callable;
 		callable = new Callable<List<String>>(){
 
