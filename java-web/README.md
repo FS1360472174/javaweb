@@ -69,3 +69,7 @@
 4. java 内存泄漏
 
 https://github.com/FS1360472174/javaweb/blob/master/java-web/src/memory/MemoryLeak.java
+
+5. http request
+
+http://square.github.io/okhttp/
