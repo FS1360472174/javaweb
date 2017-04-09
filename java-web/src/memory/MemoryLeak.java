@@ -3,27 +3,26 @@ package memory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MemoryLeak {
 	public static void main(String[] args) {
-		memoryLeak();
-		// linkQueueTest();
+		// memoryLeak();
+		linkQueueTest();
 	}
 
 	private static void memoryLeak() {
-		List<Object> listObj = new ArrayList<Object>();
-		
+		List<Object>  listObj = new ArrayList<Object>();
 		long iterations = 0;
 		try {
 			while (true) {
 				++iterations;
 				Object obj = new Object();
-				listObj.add(obj);
+				// listObj.add(obj);
 				obj = null;
 			}
 		} catch(OutOfMemoryError e) {
-			listObj = null;
 			System.err.println("iterations: " + iterations);
 			throw e;
 		}
@@ -31,10 +30,12 @@ public class MemoryLeak {
 
 	private static void linkQueueTest() {
 
-		Queue<Object> queue = new ConcurrentLinkedQueue<>();
+		Queue<Object> queue = new ConcurrentLinkedQueue<Object>();
+		// Cassandra org.apache.cassandra.utils.concurrent.Ref L261
+		// Queue<Object> queue = new ConcurrentLinkedDeque<Object>();
 		queue.offer(new Object());
 		Object item = new Object();
-
+	
 		long iterations = 0;
 		try {
 			while (true) {
