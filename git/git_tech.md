@@ -1,4 +1,4 @@
-#Basic Command#
+# Basic Command#
 
 **git status**
 
@@ -49,6 +49,10 @@ git add '*.txt'
 **git commit --amend -m""**
 
 如果工作区域有提交新的内容，而你不想它作为一个新的commit，可以使用amend命令。进行提交
+
+**git commit --fix-up commit_id**
+通过 git log --oneline 查看commit历史。
+当不想新增加commit的时候，就可以通过fix-up将新的更加添加到旧的更改中
 
 **git push -u origin master**
 
