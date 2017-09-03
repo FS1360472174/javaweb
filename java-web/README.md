@@ -73,3 +73,7 @@ https://github.com/FS1360472174/javaweb/blob/master/java-web/src/memory/MemoryLe
 5. http request
 
 http://square.github.io/okhttp/
+
+6. org.im4java.core.IMOperation 图像处理
+
+http://im4java.sourceforge.net/docs/dev-guide.html
