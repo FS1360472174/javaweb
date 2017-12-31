@@ -3,6 +3,8 @@
 ### plugin ###
 类图:http://www.objectaid.com/class-diagram
 
+各种图使用代码实现:http://plantuml.com/
+
 ### 论坛及博客 ###
 http://blog.takipi.com
 
