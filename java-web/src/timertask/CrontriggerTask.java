@@ -1,18 +1,13 @@
 package timertask;
 
-import static org.quartz.TriggerBuilder.newTrigger;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.quartz.CronScheduleBuilder;
-import org.quartz.CronTrigger;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.impl.StdSchedulerFactory;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 public class CrontriggerTask {
 	public static void main(String[] args) throws SchedulerException {

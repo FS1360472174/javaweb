@@ -1,10 +1,10 @@
 package guavaLearn;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class CollectionTest {
 
