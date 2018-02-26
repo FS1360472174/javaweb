@@ -81,11 +81,19 @@ master 是本地的默认分支
 
 
 #Branch Command#
+
 **git branch clean_up**
 
 创建branch
-
 **git checkout clean_up**
+
+基于远程分支创建本地分支
+git branch branch_name remote_name/branch 
+
+删除远程分支
+
+git push origin --delete <branchName>
+
 
 切换branch
 
