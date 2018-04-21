@@ -1,15 +1,11 @@
 package com.example.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.stereotype.Service;
-
 import com.example.dao.repository.PersonRepository;
 import com.example.model.PersonDocument;
 import com.example.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.stereotype.Service;
 
 @EnableMongoRepositories(basePackages = "com.example.dao.repository")
 @Service

@@ -1,0 +1,20 @@
+@startuml
+:Database Server: as DB
+(Database Connection Pool) as (Pool)
+
+Client -> (Start)
+
+
+
+
+note right of DB : This is an example.
+
+note right of (Pool)
+A note can also
+be on several lines
+end note
+
+note "This note is connected\nto several objects." as N2
+(Start) .. N2
+N2 .. (Use)
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+驱动 ->驱动 :注册一个驱动
+Connection --> Connection: 根据url,driver建立数据库连接，并获取连接
+Connection --> Statement: 创建Statements对象
+Statement -> DB : 发送数据库操作
+DB -> Statement: ResultSet
+Statement -> Statement: 关闭资源
+Connection -> Connection: 关闭资源
+@enduml

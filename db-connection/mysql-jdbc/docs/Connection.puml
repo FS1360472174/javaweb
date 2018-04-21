@@ -1,0 +1,27 @@
+@startuml
+
+abstract class AbstractList
+abstract AbstractCollection
+interface DataSource
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+interface DataSource{
+Connection getConnection() throws SQLException;
+Connection getConnection(String username, String password)
+    throws SQLException;
+}
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+
+@enduml

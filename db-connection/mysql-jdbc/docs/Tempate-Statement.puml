@@ -1,0 +1,19 @@
+@startuml
+
+class JdbcTemplate
+interface StatementCallback
+class QueryStatementCallback
+
+StatementCallback <|.. QueryStatementCallback
+StatementCallback <--* JdbcTemplate
+
+
+interface StatementCallback {
+T doInStatement(Statement statement)
+}
+
+class JdbcTemplate {
+public <T> T execute(StatementCallback<T> action) ;
+}
+
+@enduml

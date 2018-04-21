@@ -1,13 +1,12 @@
 //http://spring-java4dev.com/spring-framework/spring-boot/mongodb-with-spring-boot-use-mongooperation-for-accessing
 package com.example;
 
+import com.example.model.PersonDocument;
+import com.example.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.example.model.PersonDocument;
-import com.example.service.PersonService;
 
 @SpringBootApplication
 //@Import({ MongoConfig.class })

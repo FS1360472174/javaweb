@@ -40,17 +40,17 @@ public class MysqlJdbcApplication implements CommandLineRunner {
 
 	@Override
 	public void run(final String... strings) throws Exception {
-		long userId = 1L;
-		User originUser1 = generateUserInfo(userId);
-		mJdbcService.insertUser(originUser1);
-		User user = mJdbcService.getUserInfo(userId);
-		System.out.print(user.toString());
-		hibernateService.insertUser(generateUserInfo(2L));
-		User user2 = hibernateService.getUserInfo(2L);
-		System.out.print(user2.toString());
+		//long userId = 1L;
+		//User originUser1 = generateUserInfo(userId);
+		//mJdbcService.insertUser(originUser1);
+		//User user = mJdbcService.getUserInfo(userId);
+		//System.out.print(user.toString());
+		//hibernateService.insertUser(generateUserInfo(2L));
+		//User user2 = hibernateService.getUserInfo(2L);
+		//System.out.print(user2.toString());
 		//testJdbc();
 		// mJdbcTemplateService.queryById(1);
-		// mybatisService.queryByUserId(1);
+		mybatisService.queryByUserId(1);
 		//hibernateService.queryByUserId(1);
 	}
 
