@@ -3,6 +3,11 @@ package plan;
 /**
  * @author cnstonefang@gmail.com
  * 动态规划解题思路
+ *  1. 如果不限交易次数，那么直接计算最大利润即可
+ *  就是 for(int i = 1; i < prices.length; i++){
+     if(prices[i]>prices[i-1]) sum += prices[i] - prices[i-1];
+    }
+ * 如果限制交易次数，那么就确定状态方程
  *
  */
 public class Stock {
