@@ -14,6 +14,8 @@ public class Climb {
        // System.out.println(rob(rob2));
         int[] array = new int[] {-2,1,-3,4,-1,2,1,-5,4};
         System.out.println(maxSubArray(array));
+        int [] array2 = new int[] {-1,-2};
+        System.out.println(maxSubArray(array2));
     }
 
     /**
@@ -34,12 +36,12 @@ public class Climb {
         if (n == 2) {
             return 2;
         }
-        int pre[] = new int [] {1,2};
-        int result = pre[0] + pre[1];
+        int dp[] = new int [] {1,2};
+        int result = dp[0] + dp[1];
         for (int i = 3; i <= n; i++) {
-            result = pre[0] + pre[1];
-            pre[0] = pre[1];
-            pre[1] = result;
+            result = dp[0] + dp[1];
+            dp[0] = dp[1];
+            dp[1] = result;
         }
         return result;
     }
@@ -73,7 +75,7 @@ public class Climb {
     }
 
     /**
-     * dp[n] = max[dp[n-1],dp[n-1]+n,n]
+     * dp[n] = max[dp[n-1]+n,n]
      * @param nums
      * @return
      */
@@ -85,18 +87,18 @@ public class Climb {
         if (nums.length == 1) {
             return nums[0];
         }
-        int result = 0;
-        if (nums.length  ==2) {
-            result = Math.max(nums[0],nums[1]);
-            result = Math.max(result, nums[0] + nums[1]);
-        }
+        int result =  Math.max(nums[0]+nums[1],nums[1]);
         int dp = result;
+        int max = Math.max(result, nums[0]);
         for (int i = 2; i< nums.length; i++) {
-            result = Math.max(dp, dp+nums[i]);
-            result = Math.max(result, nums[i]);
+            result = Math.max(dp+nums[i],nums[i]);
             dp = result;
+            // 如果比历史的大，就替换
+            if (result > max) {
+                max = result;
+            }
         }
-        return result;
+        return max;
     }
 
 }
