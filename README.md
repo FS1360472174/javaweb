@@ -22,6 +22,10 @@ http://highscalability.com/blog/2016/9/28/how-uber-manages-a-million-writes-per-
 
 http://beebom.com/
 
+
+**DDD**
+https://www.jdon.com/44215
+
 ### 在线课程 ###
 
 MIT 课程 https://ocw.mit.edu/index.htm
