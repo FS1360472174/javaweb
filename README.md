@@ -22,6 +22,8 @@ http://highscalability.com/blog/2016/9/28/how-uber-manages-a-million-writes-per-
 
 http://beebom.com/
 
+数据产品一书的作者
+https://martin.kleppmann.com/
 
 **DDD**
 https://www.jdon.com/44215
