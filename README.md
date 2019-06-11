@@ -25,6 +25,15 @@ http://beebom.com/
 数据产品一书的作者
 https://martin.kleppmann.com/
 
+京东
+http://www.linkedkeeper.com/article/read.action?id=2
+
+阿里中间件
+http://jm.taobao.org/
+
+美团博客
+https://tech.meituan.com/
+
 **DDD**
 https://www.jdon.com/44215
 
