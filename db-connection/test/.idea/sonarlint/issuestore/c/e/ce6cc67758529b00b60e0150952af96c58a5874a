@@ -1,0 +1,11 @@
+
+^squid:UnusedPrivateMethod"6Remove this unused private "testAggByCategory" method.(Á¶“ ıÿÿÿÿ
+[squid:UnusedPrivateMethod"3Remove this unused private "testRepository" method.(¸Šğøÿÿÿÿ
+Asquid:S2095",Close this "ConfigurableApplicationContext".(Æ‚üÄ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ò“ŞÓùÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¢Úıÿÿÿÿÿ
+Csquid:S1481")Remove this unused "post" local variable.(æÉÛıÿÿÿÿ
+:squid:S1166"%Either log or rethrow this exception.(ï­£Ä
+Rsquid:S1854"8Remove this useless assignment to local variable "post".(æÉÛıÿÿÿÿ
+Vsquid:UselessImportCheck"4Remove this unused import 'com.fs.mongo.dao.PostDb'.(çŸËæ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ

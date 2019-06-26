@@ -1,0 +1,5 @@
+
+Nsquid:S1118":Add a private constructor to hide the implicit public one.(¦íˆ6
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+:squid:S1166"%Either log or rethrow this exception.(“’Š©
+Ksquid:S1313"/Make this IP "10.1.2.186" address configurable.(×Êá£8Ë¥ÐÅ®,

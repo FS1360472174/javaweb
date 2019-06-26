@@ -15,44 +15,49 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 @SpringBootApplication(scanBasePackages = "com.fs.connection.mysql.jdbc")
 public class MysqlJdbcApplication implements CommandLineRunner {
 
-	@Autowired
-	private JdbcTemplateService mJdbcTemplateService;
+    @Autowired
+    private JdbcTemplateService mJdbcTemplateService;
 
-	@Autowired
-	private MybatisService mybatisService;
-	public static void main(String[] args) {
-		SpringApplication.run(MysqlJdbcApplication.class, args);
-	}
+    @Autowired
+    private MybatisService mybatisService;
 
-	@Override
-	public void run(final String... strings) throws Exception {
-		//testJdbc();
-		mJdbcTemplateService.queryById(1);
-		mybatisService.queryByUserId(1);
-	}
+    public static void main(final String[] args) {
+        SpringApplication.run(MysqlJdbcApplication.class, args);
+    }
 
-	public void testJdbc() throws ClassNotFoundException, SQLException {
-		Connection conn = null;
-		Class.forName("com.mysql.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/test?"
-				+ "user=root&password=123456&useUnicode=true&characterEncoding=UTF8";
-		conn = DriverManager.getConnection(url);
-		Statement stmt = conn.createStatement();
-		String sql = "select *from post where user_id=1";
-		ResultSet resultSet = stmt.executeQuery(sql);
-		List<Post> posts = new ArrayList<>();
-		while (resultSet.next()) {
-			Post post = new Post();
-			post.setId(resultSet.getLong("id"));
-			post.setTitle(resultSet.getString("title"));
-			post.setContents(resultSet.getString("contents"));
-			posts.add(post);
-		}
-		stmt.close();
-		conn.close();
-	}
+    @Override
+    public void run(final String... strings) throws Exception {
+        testJdbc();
+        //mJdbcTemplateService.queryById(1);
+        //mybatisService.queryByUserId(1);
+    }
+
+    public void testJdbc() throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        Class.forName("com.mysql.jdbc.Driver");
+        final String url = "jdbc:mysql://rds-kujiale-alpha.qunhequnhe.com:3306/fenshua123?"
+                +
+                "user=kujialealpha2017&password=zcJ4sNaVJ63l9lKk&useUnicode=true&characterEncoding=UTF8";
+        conn = DriverManager.getConnection(url);
+        final Statement stmt = conn.createStatement();
+        final String sql = "select *from fstest where userId=1";
+        final ResultSet resultSet = stmt.executeQuery(sql);
+        final List<Post> posts = new ArrayList<>();
+        while (resultSet.next()) {
+            final Post post = new Post();
+            post.setId(resultSet.getLong("id"));
+            post.setTitle(resultSet.getString("title"));
+            post.setContents(resultSet.getString("contents"));
+            posts.add(post);
+        }
+        stmt.close();
+        conn.close();
+    }
+
 }

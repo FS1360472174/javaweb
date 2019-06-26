@@ -1,0 +1,8 @@
+@startuml
+Application -> Connection: 获取对应分组的连接
+Connection --> Application: 返回连接
+note left Connection:连接池中将autocommit=true/fasle分成两组
+Application -> DB: 数据库操作
+DB -> Application: 操作成功
+Application -> Connection : 归还连接
+@enduml

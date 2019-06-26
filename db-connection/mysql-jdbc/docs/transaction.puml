@@ -1,0 +1,11 @@
+@startuml
+Application -> Connection: 获取连接
+Connection --> Application: 返回连接
+
+Application -> Application: 设置autocommit = false
+
+Application -> DB: 数据库操作
+DB -> Application: 操作成功
+Application -> Application: 设置autocommit = true
+Application -> Connection : 归还连接
+@enduml
