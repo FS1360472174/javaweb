@@ -22,6 +22,21 @@ http://highscalability.com/blog/2016/9/28/how-uber-manages-a-million-writes-per-
 
 http://beebom.com/
 
+数据产品一书的作者
+https://martin.kleppmann.com/
+
+京东
+http://www.linkedkeeper.com/article/read.action?id=2
+
+阿里中间件
+http://jm.taobao.org/
+
+美团博客
+https://tech.meituan.com/
+
+**DDD**
+https://www.jdon.com/44215
+
 ### 在线课程 ###
 
 MIT 课程 https://ocw.mit.edu/index.htm

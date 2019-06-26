@@ -1,0 +1,14 @@
+@startuml
+SqlSession -> CacheExecutor: API访问层
+CacheExecutor -> Executor
+CacheExecutor --> SqlSession: 有缓存结果
+Executor -> StatementHandler: 构建SQL,缓存结果
+Executor -> Executor: ParameterHandler 处理参数
+StatementHandler -> JDBCStatement: 与JDBC Statement交互
+JDBCStatement -> DB:
+JDBCStatement -> StatementHandler: resultset(ResultHandler来处理)
+
+SqlSession -> Executor: close session
+
+
+@enduml

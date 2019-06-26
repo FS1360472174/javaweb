@@ -19,5 +19,6 @@ public class MybatisService {
         SqlSession session = sqlSessionFactory.openSession();
         PostMapper postMapper = session.getMapper(PostMapper.class);
         Post post = postMapper.findPostByUserId(userId);
+        session.close();
     }
 }

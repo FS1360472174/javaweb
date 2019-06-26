@@ -1,0 +1,23 @@
+@startuml
+
+class MapperProxy
+interface InvocationHandler
+
+
+Executor <.. SqlSession
+SqlSession <.. MapperMethod:委托给SqlSession去执行sql
+InvocationHandler <|.. MapperProxy:给代理类注入了sqlSession
+MapperMethod <.. MapperProxy
+
+
+Executor <|.. BaseExecutor
+BaseExecutor<|-- SimpleExecutor
+
+
+class MapperMethod {
+  private final SqlCommand command;
+  private final MethodSignature method;
+  Object execute(SqlSession sqlSession, Object[] args) ;
+}
+
+@enduml

@@ -1,6 +1,7 @@
 package com.fs.connection.mysql.jdbc.service;
 
 import com.fs.connection.mysql.jdbc.bean.Post;
+import com.fs.connection.mysql.jdbc.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,13 +15,23 @@ import java.util.List;
  * @author cnstonefang@gmail.com
  */
 @Service
-public class JdbcTemplateService {
+public class JdbcTemplateService implements DbService{
     @Autowired
     private JdbcTemplate mJdbcTemplate;
 
     public void queryById(long userId) {
         String sql = "select * from post where user_id = " + userId;
         List<Post> result =mJdbcTemplate.query(sql, new PostRowMapper());
+    }
+
+    @Override
+    public void insertUser(final User user) throws SQLException, ClassNotFoundException {
+
+    }
+
+    @Override
+    public User getUserInfo(final long userId) throws ClassNotFoundException, SQLException {
+        return null;
     }
 
     class PostRowMapper implements RowMapper<Post> {

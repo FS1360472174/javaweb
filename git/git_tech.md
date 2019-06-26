@@ -177,6 +177,12 @@ git log 默认是meduim,会有很多的信息，包括author等信息。可以�
 
 查看文件的作者，修改信息
 
+**新添加.gitignore**
+需要先删除之前已经track的文件
+git rm -r --cached xxx.log
+git add .
+git commit -m 'update .gitignore
+
 #Conflict#
 
 HEAD 是你本地的，需要保留下来的

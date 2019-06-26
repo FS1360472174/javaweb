@@ -1,0 +1,13 @@
+@startuml
+
+应用代码 -> Template: 提供SQL
+Template -> DB: 执行数据库操作
+note left
+Template 封装了Connection获取，
+Statement创建,ResultSet返回
+end note
+DB -> Template: ResultSet
+Template -> 应用代码: ResultSet转换为类映射
+
+@enduml
+
