@@ -1,7 +1,6 @@
 /*
  * ExtensionServiceLoader.java
- * Copyright 2019 Qunhe Tech, all rights reserved.
- * Qunhe PROPRIETARY/CONFIDENTIAL, any form of usage is subject to approval.
+ * a
  */
 
 package com.fs.web.serviceloader;
