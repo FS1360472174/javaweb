@@ -4,6 +4,8 @@
 
 package com.fs.web;
 
+import com.fs.web.alg.consisthash.ConsistHash;
+import com.fs.web.alg.consisthash.NodeIP;
 import com.fs.web.instance.InstanceByServiceLoader;
 import com.fs.web.instance.InstanceBySpring;
 import com.fs.web.instance.InstanceBySpringContext;
@@ -28,6 +30,10 @@ public class ScriptCommandLineRunner implements CommandLineRunner {
 
         testInject();
 
+    }
+    private void testConsist() {
+        ConsistHash consistHash = new ConsistHash();
+        System.out.println(consistHash.select(new NodeIP("host1",1)));
     }
     private void testGetInstance() {
         final var instance1 = new InstanceByServiceLoader();
