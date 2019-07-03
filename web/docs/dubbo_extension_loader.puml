@@ -1,0 +1,8 @@
+@startuml
+ExtensionLoader -> ExtensionLoader: getExtension
+ExtensionLoader -> ExtensionLoader: createExtension
+ExtensionLoader -> ExtensionLoader: injectExtension
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
