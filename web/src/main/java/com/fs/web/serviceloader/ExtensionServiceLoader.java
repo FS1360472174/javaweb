@@ -6,6 +6,7 @@
 package com.fs.web.serviceloader;
 
 import com.fs.web.instance.state.AbstractState;
+import lombok.var;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
@@ -86,7 +87,7 @@ public class ExtensionServiceLoader<T> {
     private Map<String, Class<?>> loadExtensionClasses() {
         ServiceLoader<?> classes = ServiceLoader.load(type);
         final Map<String, Class<?>> result = new HashMap<>();
-        for(Object c : classes) {
+        for(var c : classes) {
             result.put(c.getClass().getName(), c.getClass());
         }
         return result;

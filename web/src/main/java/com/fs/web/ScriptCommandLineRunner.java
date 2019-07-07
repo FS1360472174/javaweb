@@ -17,6 +17,8 @@ import lombok.var;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ServiceLoader;
+
 /**
  * @author fangzhang
  *
@@ -26,10 +28,9 @@ public class ScriptCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(final String... strings) throws Exception {
-
-
         testInject();
-
+       // System.out.println(ServiceLoader.class.getClassLoader());
+        //System.out.println(Thread.currentThread().getContextClassLoader());
     }
     private void testConsist() {
         ConsistHash consistHash = new ConsistHash();
@@ -46,5 +47,6 @@ public class ScriptCommandLineRunner implements CommandLineRunner {
     private void testInject() {
         Strategy ext = ExtensionServiceLoader.getExtensionLoader(Strategy.class).getExtension
                 (RefuseStrategy.class.getName());
+        System.out.println(ext);
     }
 }

@@ -4,6 +4,7 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/web/pom.xml" />
         <option value="$PROJECT_DIR$/db-connection/test/pom.xml" />
         <option value="$PROJECT_DIR$/db-connection/mysql-jdbc/pom.xml" />
       </list>

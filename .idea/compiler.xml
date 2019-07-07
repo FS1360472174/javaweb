@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mysql-jdbc" />
         <module name="test" />
+        <module name="web" />
       </profile>
     </annotationProcessing>
   </component>

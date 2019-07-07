@@ -17,6 +17,7 @@ public class RefuseStrategy implements Strategy {
     public void handle() {
 
     }
+    // 这种获取值的方法不可取
     public void setExt1(RefuseState ext1) {
         //inject数据
         this.state = ext1;
