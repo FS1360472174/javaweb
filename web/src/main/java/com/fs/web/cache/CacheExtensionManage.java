@@ -28,7 +28,7 @@ public class CacheExtensionManage implements CacheManager {
     private final ConcurrentMap<String, Cache> cacheMap = new ConcurrentHashMap<>(16);
     @Override
     public Cache getCache(final String name) {
-        return null;
+        return cacheMap.get(name);
     }
 
     @Override
