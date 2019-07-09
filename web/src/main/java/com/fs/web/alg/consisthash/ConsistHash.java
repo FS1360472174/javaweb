@@ -2,11 +2,6 @@
  * ConsistHash.java
  */
 
-/*
- * ConsistHash.java
- * Qunhe PROPRIETARY/CONFIDENTIAL, any form of usage is subject to approval.
- */
-
 package com.fs.web.alg.consisthash;
 
 import java.io.UnsupportedEncodingException;
