@@ -24,7 +24,7 @@ static class DynamicProxy implements InvocationHandler {
     Object originalObj;
     Object bind(Object originalObj){ this. originalObj= originalObj;
     return Proxy.newProxyInstance(originalObj.getClass().getClassLoader(), originalObj.
-            getClass(). getInterfaces(),this); }
+            getClass(). getInterfaces(),null); }
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable{
         System.out.println(" welcome");

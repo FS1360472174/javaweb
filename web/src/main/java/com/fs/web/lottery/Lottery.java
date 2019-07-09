@@ -3,12 +3,15 @@
  */
 
 package com.fs.web.lottery;
+import org.springframework.stereotype.Component;
+
 import java.security.SecureRandom;
 import java.util.List;
 /**
  * @author fangzhang
  *
  */
+@Component
 public class Lottery {
     /**
      *  奖池
