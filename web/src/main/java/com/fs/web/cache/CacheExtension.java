@@ -5,17 +5,26 @@
 package com.fs.web.cache;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.cache.support.AbstractValueAdaptingCache;
 import org.springframework.cache.support.NullValue;
 import org.springframework.cglib.core.internal.LoadingCache;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author fangzhang
@@ -122,7 +131,7 @@ public class CacheExtension extends AbstractValueAdaptingCache {
     @Override
     protected Object lookup(Object key) {
         // 从collection中获取
-        final Object result = ExtensionCacheUtil.lookup(this, key);
+        final Object result = lookup(this, key);
         if (result != null) {
             return result;
         }
@@ -131,7 +140,7 @@ public class CacheExtension extends AbstractValueAdaptingCache {
 
     @Override
     public void put(Object key, Object value) {
-        if (ExtensionCacheUtil.putCollections(this, key, value)) {
+        if (putCollections(this, key, value)) {
             return;
         }
         this.cache.put(key, toStoreValue(value));
@@ -190,5 +199,40 @@ public class CacheExtension extends AbstractValueAdaptingCache {
                 throw new ValueRetrievalException(o, valueLoader, ex);
             }
         }
+    }
+    public static Object lookup(final CacheExtension cache, final Object key) {
+        if (key instanceof Collection) {
+            final Collection<Object> originalKeys = ((Collection) key);
+            if (originalKeys == null || originalKeys.isEmpty()) {
+                return CacheResult.builder().cache(cache).miss(
+                        Collections.emptySet())
+                        .build();
+            }
+            final List<Object> keys = originalKeys.stream()
+                    .filter(Objects::nonNull).collect(Collectors.toList());
+            final Map<Object, Object> hits = cache.getAll(keys);
+            final Set<Object> miss = new HashSet(keys);
+            miss.removeAll(hits.keySet());
+            return CacheResult.builder().cache(cache).hit(hits).miss(miss).build();
+        }
+        return null;
+    }
+
+    public static boolean putCollections(final CacheExtension cache,
+            final Object key, final Object value) {
+        if (key instanceof Collection && value instanceof Map) {
+            cache.putAll((Map<Object, Object>) value);
+            return true;
+        }
+        return false;
+    }
+
+    @Builder
+    @Setter
+    @Getter
+    static class CacheResult {
+        final CacheExtension cache;
+        final Map<Object, Object> hit;
+        private Set<Object> miss;
     }
 }

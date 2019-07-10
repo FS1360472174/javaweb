@@ -4,6 +4,7 @@
 
 package com.fs.web.cache.sample;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -11,6 +12,7 @@ import lombok.Data;
  *
  */
 @Data
+@Builder
 public class User {
     private Long userId;
     private String name;

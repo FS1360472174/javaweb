@@ -9,113 +9,78 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.support.SimpleValueWrapper;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * @author fangzhang
  *
  */
-//@Aspect
+@Aspect
 @Component
 @Order(Integer.MIN_VALUE)
 public class CacheExtenionAspect {
 
-        @Autowired
-        private CacheExtensionManage cacheExtensionManage;
+    @Autowired
+    private CacheExtensionManage cacheExtensionManage;
 
-        @Around("@annotation(org.springframework.cache.annotation.Cacheable)")
-        @SuppressWarnings("unchecked")
-        public Object aroundCache(final ProceedingJoinPoint joinPoint) {
-            final long start = System.nanoTime();
-            final MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-            final Cacheable annotation = signature.getMethod().getAnnotation(Cacheable.class);
-            final String[] cacheNames = annotation.cacheNames().length == 0 ?
-                    annotation.value() : annotation.cacheNames();
-
-            final Class<?> returnType = signature.getReturnType();
-
-            final String keyGeneratorName = annotation.keyGenerator();
-
-            //Cacheable注解需要有自定义的keyGenerator
-            if (StringUtils.isEmpty(keyGeneratorName)) {
-                return directly(joinPoint);
-            }
-            final Object result = directly(joinPoint);
-
-            final CacheExtension cache = (CacheExtension) result;
-            final Method method = signature.getMethod();
-            final Object target = joinPoint.getTarget();
-            final Object[] args = joinPoint.getArgs();
-            final Collection<Object> keys = (Collection<Object>) args[0];
-
-            try {
-                final Map<Object, Object> rest = (Map<Object, Object>) (method.invoke(target, args));
-                final Map<Object, Object> hits = new HashMap<>();
-                if (Objects.isNull(rest)) {
-                    return hits;
-                }
-                cache.putAll(rest);
-                hits.putAll(rest);
+    /**
+     * 返回的结果中缓存命中的从缓存中获取，没有命中的调用原来的方法获取
+     * @param joinPoint
+     * @return
+     */
+    @Around("@annotation(org.springframework.cache.annotation.Cacheable)")
+    @SuppressWarnings("unchecked")
+    public Object aroundCache(final ProceedingJoinPoint joinPoint) {
+        final MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        final Object result = directly(joinPoint);
+        final CacheExtension.CacheResult cacheResult = (CacheExtension.CacheResult) result;
+        final Method method = signature.getMethod();
+        final Object target = joinPoint.getTarget();
+        final Object[] args = joinPoint.getArgs();
+        // 修改掉Collection值
+        args[0] = cacheResult.getMiss();
+        try {
+            final Map<Object, Object> notHit = CollectionUtils.isEmpty(cacheResult.getMiss()) ? null
+                    : (Map<Object, Object>) (method.invoke(target, args));
+            final Map<Object, Object> hits = cacheResult.getHit();
+            if (Objects.isNull(notHit)) {
                 return hits;
-            } catch (final IllegalAccessException | InvocationTargetException e) {
-                throw new IllegalStateException(e);
-            } finally {
             }
+            // 设置缓存
+            cacheResult.getCache().putAll(notHit);
+            hits.putAll(notHit);
+            return hits;
+        } catch (final IllegalAccessException | InvocationTargetException e) {
+            throw new IllegalStateException(e);
+        } finally {
         }
+    }
 
-        @SuppressWarnings("rawtypes")
-        @Around("within (org.springframework.cache.Cache+) && " +
-                "execution(* *.get(Object))")
-        public Object aroundGenericGet(final ProceedingJoinPoint joinPoint) {
-            final Object[] args = joinPoint.getArgs();
-            final Object key = args[0];
-            if (key == Optional.empty()) {
-                return new SimpleValueWrapper(null);
-            } else if (key instanceof Optional) {
-                args[0] = ((Optional) key).get();
-                return directly(joinPoint, args);
+    private Object directly(final ProceedingJoinPoint joinPoint) {
+        return directly(joinPoint, null);
+    }
+
+    private Object directly(final ProceedingJoinPoint joinPoint, final Object[] args) {
+        try {
+            if (args == null) {
+                return joinPoint.proceed();
             } else {
-                return directly(joinPoint);
+                return joinPoint.proceed(args);
             }
+        } catch (final RuntimeException e) {
+            throw e;
+        } catch (final Throwable throwable) {
+            throw new RuntimeException(throwable);
         }
-
-        private Object directlyWithStats(
-                final ProceedingJoinPoint joinPoint
-        ) {
-            final Object result = directly(joinPoint);
-            return result;
-        }
-
-        private Object directly(final ProceedingJoinPoint joinPoint) {
-            return directly(joinPoint, null);
-        }
-
-        private Object directly(final ProceedingJoinPoint joinPoint, final Object[] args) {
-            try {
-                if (args == null) {
-                    return joinPoint.proceed();
-                } else {
-                    return joinPoint.proceed(args);
-                }
-            } catch (final RuntimeException e) {
-                throw e;
-            } catch (final Throwable throwable) {
-                throw new RuntimeException(throwable);
-            }
-        }
+    }
 }

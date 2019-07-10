@@ -6,6 +6,7 @@ package com.fs.web.cache.sample;
 
 import com.fs.web.cache.CacheExtensionManage;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +18,8 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class CacheConfig {
-   // @Primary
-   // @Bean(name = { "cacheManager" })
+    //@Primary
+    @Bean(name = { "cacheManager" })
     public CacheManager getCache() {
       return new ConcurrentMapCacheManager("users");
     }

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class CacheController {
     @Autowired
     private CacheSample cacheSample;
-    @GetMapping("/user")
+    @GetMapping("/user/v1/1")
     public List<User> getUser() {
         return cacheSample.getUser(Arrays.asList(1L,2L)).values().stream().collect(Collectors.toList());
     }
@@ -30,8 +30,23 @@ public class CacheController {
     /**
      *  应该有部分被缓存起来
      */
-    @GetMapping("/user/v2")
+    @GetMapping("/user/v1/2")
+    public List<User> getUserV1() {
+        return cacheSample.getUser(Arrays.asList(1L,3L)).values().stream().collect(Collectors
+                .toList());
+    }
+
+    /**
+     *  应该有部分被缓存起来
+     */
+    @GetMapping("/user/v2/1")
     public List<User> getUserV2() {
-        return cacheSample.getUserV2(Arrays.asList(1L,3L)).values().stream().collect(Collectors.toList());
+        return cacheSample.getUserV2(Arrays.asList(1L,2L)).values().stream().collect(Collectors
+                .toList());
+    }
+    @GetMapping("/user/v2/2")
+    public List<User> getUserV21() {
+        return cacheSample.getUserV2(Arrays.asList(1L,3L)).values().stream().collect(Collectors
+                .toList());
     }
 }

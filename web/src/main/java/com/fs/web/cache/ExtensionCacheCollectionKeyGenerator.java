@@ -28,7 +28,7 @@ public class ExtensionCacheCollectionKeyGenerator implements KeyGenerator {
                 }
             }
 
-            return new ExtensionCacheUtil.Keys((Collection<Object>) params[0]);
+            return (Collection<Object>) params[0];
         }
         throw new IllegalStateException("ExtensionCacheCollectionKeyGenerator failed");
     }
