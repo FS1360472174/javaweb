@@ -4,6 +4,7 @@
 
 package com.fs.web.lottery;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -11,6 +12,7 @@ import lombok.Data;
  *
  */
 @Data
+@AllArgsConstructor
 public class Prize {
     private Long id;
     private String name;

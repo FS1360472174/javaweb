@@ -9,3 +9,7 @@ SpringCache的扩展
 
 
 # 
+
+
+# 扩展，如何实现metric监控
+http://ylzheng.com/2018/01/24/use-prometheus-monitor-your-spring-boot-application/

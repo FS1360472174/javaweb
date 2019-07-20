@@ -6,10 +6,11 @@ package com.fs.web.lottery;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 /**
  * @author fangzhang
  *
@@ -21,10 +22,10 @@ public class LotteryController {
     private Lottery lottery;
 
     @PostMapping("/play")
-    @SentinelResource
-    public ResponseEntity play() {
-        LotteryContext lotteryContext = new LotteryContext();
-        lottery.choosePrize(lotteryContext);
-        return ResponseEntity.of(null);
+    public Prize play(@RequestParam(value = "userId")final Long userId) {
+        final LotteryContext lotteryContext = new LotteryContext();
+        lotteryContext.setUserId(userId);
+        final Prize prize = lottery.choosePrize(lotteryContext);
+        return prize;
     }
 }
