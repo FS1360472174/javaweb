@@ -1,0 +1,15 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+
+    <!-- Add this argument to options to make AspectJ logs use the Spring logging framework. -->
+    <!-- -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler -->
+    <weaver options="-verbose -showWeaveInfo">
+        <!--
+            Only weave classes in our application-specific packages.
+            This should encompass any class that wants to utilize the aspects,
+            and does not need to encompass the aspects themselves.
+            Note that using “..*” indicates that all subpackages should be searched; only using “.*”
+        -->
+        <include within="com.fs.web..*" />
+    </weaver>
+</aspectj>
